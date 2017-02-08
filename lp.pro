@@ -26,21 +26,21 @@ sum-calculator-in-list([Head|_],N) :- % Handles things that are lists
 % Helper function that finds the minimum element in a list
 calculate-min([],0). % Empty list has a min of 0
 calculate-min(L,N) :-
+    not(length(L,1)),
     [Head|Tail] = L,
     calculate-min([Head|Tail],N).
 calculate-min(L,N) :-
     length(L,1),
     [Head] = L,
-    print(Head),
-    %calculate-min(L,N),
     N is Head.
 calculate-min(Head,Tail,N) :-
+    not(length(Tail,1)),
     [H|T] = Tail,
     Min is min(Head,H),
     calculate-min(Min,T, N).
 calculate-min(Head,Tail,N) :- %Handle exceptions for list parsing [array size = 1] last iteration of min function
     length(Tail,1),
-    [H|_] = Tail,
+    [H] = Tail,
     Min is min(Head,H),
     N is Min.
 calculate-min([Head|Tail],N) :-
@@ -60,7 +60,8 @@ sum-up-numbers-general(L,N) :-
 
 
 common-unique-elements([], [], []). % Bases case is they're both empty so share empty uniquiness
-common-unique-elements([], [], []) :-
-common-unique-elements(L1, L2, N) :-
-    [L1X1|L1Y1] = L1,
-    [L2X2|L2Y2] = L2,
+%common-unique-elements([], [], []).
+%common-unique-elements(L1, L2, N) :-
+%    [L1X1|L1Y1] = L1,
+%    [L2X2|L2Y2] = L2.
+
