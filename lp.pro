@@ -29,10 +29,15 @@ calculate-min(L,N) :-
     [Head|Tail] = L,
     calculate-min([Head|Tail],N).
 
-calculate-min(Head,Tail,N) :-
+calculate-min(Head,Tail,N) :- 
     [H|T] = Tail,
     Min is min(Head,H),
     calculate-min(Min,T, N).
+
+calculate-min(Head,Tail,N) :- %Handle exceptions for list parsing [array size = 1] last iteration of min function
+    length(Tail,1),
+    Min is min(Head,Tail),
+    N is Min.
 
 calculate-min([Head|Tail],N) :-
     calculate-min(Head,Tail,N).
@@ -47,3 +52,5 @@ sum-up-numbers-general([],0). %Base case where list is empty
 sum-up-numbers-general(L,N) :-
     [Head|Tail] = L,
     sum-calculator-in-list([Head|Tail],N).
+
+
