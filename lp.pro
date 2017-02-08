@@ -26,11 +26,12 @@ sum-calculator-in-list([Head|_],N) :- % Handles things that are lists
 % Helper function that finds the minimum element in a list
 calculate-min([],0). % Empty list has a min of 0
 calculate-min(L,N) :-
-    [First,Second|Rest] = L,
-    calculate-min([First,Second|Rest],N).
+    [Head|Tail] = L,
+    calculate-min([Head|Tail],N).
 calculate-min([First, Second|Rest],N) :-
-    Min is min(Head,N),
-    calculate-min(Tail,Min).
+    Min is min(First,Second),
+    calculate-min(Rest,Min),
+    N is Min.
 
 
 
