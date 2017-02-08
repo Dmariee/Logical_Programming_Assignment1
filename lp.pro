@@ -26,19 +26,23 @@ sum-calculator-in-list([Head|_],N) :- % Handles things that are lists
 % Helper function that finds the minimum element in a list
 calculate-min([],0). % Empty list has a min of 0
 calculate-min(L,N) :-
+    length(L,1),
+    [Head|_] = L,
+    print(Head),
+    calculate-min(L,N)
+    N = Head.
+calculate-min(L,N) :-
     [Head|Tail] = L,
     calculate-min([Head|Tail],N).
-
-calculate-min(Head,Tail,N) :- 
+calculate-min(Head,Tail,N) :-
     [H|T] = Tail,
     Min is min(Head,H),
     calculate-min(Min,T, N).
-
 calculate-min(Head,Tail,N) :- %Handle exceptions for list parsing [array size = 1] last iteration of min function
     length(Tail,1),
-    Min is min(Head,Tail),
+    [H] = Tail,
+    Min is min(Head,H),
     N is Min.
-
 calculate-min([Head|Tail],N) :-
     calculate-min(Head,Tail,N).
 
@@ -52,5 +56,3 @@ sum-up-numbers-general([],0). %Base case where list is empty
 sum-up-numbers-general(L,N) :-
     [Head|Tail] = L,
     sum-calculator-in-list([Head|Tail],N).
-
-
