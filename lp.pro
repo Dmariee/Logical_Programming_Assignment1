@@ -15,11 +15,11 @@ sum-calculator-in-list([Head|Tail],N) :- % Handles things that are numbers
     number(Head), % Check if element is a number
     sum-calculator-in-list(Tail, RecursedSum), % Continue traversing for more elements
     N is Head + RecursedSum. % Add all numbers together to equal N
-sum-calculator-in-list([Head|Tail],N) :- % Handles things that are not letters of lists
-    not(number(Head)), % Neither of the top 2 conditions so continue with the rest of the list
+sum-calculator-in-list([Head|Tail],N) :- % Handles things that are not numbers or lists
+    not(number(Head)), % Is not a list or a number so continue with the rest of the list
     sum-calculator-in-list(Tail, N). % Continue traversing the list
 sum-calculator-in-list([Head|_],N) :- % Handles things that are lists
-    is_list(Head), % Check if for elements are lists
+    is_list(Head), % Check if the first element is list
     sum-calculator-in-list(Head, N). % First element is a list so run the function call on it
 
 
@@ -33,3 +33,4 @@ sum-up-numbers-general([],0). %Base case where list is empty
 sum-up-numbers-general(L,N) :-
     [Head|Tail] = L,
     sum-calculator-in-list([Head|Tail],N).
+
