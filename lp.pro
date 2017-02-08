@@ -22,8 +22,15 @@ sum-calculator-in-list([Head|Tail],N) :- % Handles things that are lists
 sum-calculator-in-list([Head|Tail],N) :- % Handles things that are not letters of lists
     not(number(Head)), % Neither of the top 2 conditions so continue with the rest of the list
     sum-calculator-in-list(Tail, N). % Continue traversing the list
+
+
 %Actual functios that are being called used helper function declarations
 sum-up-numbers-simple([],0). %Base case where list is empty
 sum-up-numbers-simple(L,N) :-
     [Head|Tail] = L,
     sum-calculator-no-list([Head|Tail],N).
+
+sum-up-numbers-general([],0). %Base case where list is empty
+sum-up-numbers-general(L,N) :-
+    [Head|Tail] = L,
+    sum-calculator-in-list([Head|Tail],N).
