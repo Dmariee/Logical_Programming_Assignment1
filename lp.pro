@@ -11,5 +11,5 @@ sum-calculator-no-list([Head|Tail],N) :- % Handles things that are not numbers
 % Helper function to handle adding elements in nested list
 sum-up-numbers-simple([],0). %Base case where list is empty
 sum-up-numbers-simple(L,N) :-
-    L = [Head|Tail]
-    .
+    [Head|Tail] = L,
+    sum-calculator-no-list([Head|Tail],N).
