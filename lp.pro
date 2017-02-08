@@ -62,6 +62,7 @@ sum-up-numbers-general(L,N) :-
 common-unique-elements([], [], []). % Bases case is they're both empty so share empty uniquiness
 %common-unique-elements([], [], []).
 %common-unique-elements(L1, L2, N) :-
-%    [L1X1|L1Y1] = L1,
-%    [L2X2|L2Y2] = L2.
+%    [L1X1|L1Y1] = L1, % Break list into parts for manipulation
+%    [L2X2|L2Y2] = N,
+%    member(L1X1, L2),
 
