@@ -28,12 +28,14 @@ calculate-min([],0). % Empty list has a min of 0
 calculate-min(L,N) :-
     [Head|Tail] = L,
     calculate-min([Head|Tail],N).
-calculate-min([First, Second|Rest],N) :-
-    Min is min(First,Second),
-    calculate-min(Rest,Min),
-    N is Min.
 
+calculate-min(Head,Tail,N) :-
+    [H|T] = Tail,
+    Min is min(Head,H),
+    calculate-min(Min,T, N).
 
+calculate-min([Head|Tail],N) :-
+    calculate-min(Head,Tail,N).
 
 %Actual functios that are being called used helper function declarations
 sum-up-numbers-simple([],0). %Base case where list is empty
