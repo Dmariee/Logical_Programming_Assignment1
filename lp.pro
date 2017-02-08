@@ -15,14 +15,14 @@ sum-calculator-in-list([Head|Tail],N) :- % Handles things that are numbers
     number(Head), % Check if element is a number
     sum-calculator-in-list(Tail, RecursedSum), % Continue traversing for more elements
     N is Head + RecursedSum. % Add all numbers together to equal N
-sum-calculator-in-list([Head|Tail],N) :- % Handles things that are lists
-    is_list(Head), % Check if for elements are lists
-    sum-calculator-in-list(Head,N), % First element is a list so run the function call on it
-    sum-calculator-in-list(Tail, N). % Continue traversing list without doing anything for that element
 sum-calculator-in-list([Head|Tail],N) :- % Handles things that are not letters of lists
     not(number(Head)), % Neither of the top 2 conditions so continue with the rest of the list
     sum-calculator-in-list(Tail, N). % Continue traversing the list
-
+sum-calculator-in-list([Head|Tail],N) :- % Handles things that are lists
+    is_list(Head), % Check if for elements are lists
+    sum-calculator-in-list(Head, N1), % First element is a list so run the function call on it
+    N is N + N1,
+    sum-calculator-in-list(Tail, N). % Continue traversing list without doing anything for that element
 
 %Actual functios that are being called used helper function declarations
 sum-up-numbers-simple([],0). %Base case where list is empty
