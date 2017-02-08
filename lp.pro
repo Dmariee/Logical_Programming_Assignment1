@@ -56,3 +56,8 @@ sum-up-numbers-general([],0). %Base case where list is empty
 sum-up-numbers-general(L,N) :-
     [Head|Tail] = L,
     sum-calculator-in-list([Head|Tail],N).
+
+
+
+common-unique-elements([], [], []). % Bases case is they're both empty so share empty uniquiness
+
